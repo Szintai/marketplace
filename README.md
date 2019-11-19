@@ -8,6 +8,7 @@ TODO:
 
 - KeyCloak Users (in progress)
 - Project Lombok (in progress)
+- Make categories ( in tree structure)
 
 Bugs:
 
