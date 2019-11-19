@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+<title>MyPage</title>
+
+
+
+
+</head>
+
+
+<div>
+<nav class="menu-bar">
+<a  href="/">Kezdőoldal</a>
+<a  href="/products">Termékek</a>
+<a  href="/cart">Kosár</a>
+<a sec:authorize="isAuthenticated()" href="/productUpload">Termék feltöltés</a>
+<a sec:authorize="isAuthenticated()" href="/profile">Profil</a>
+<a sec:authorize="!isAuthenticated()" href="/login">Bejelentkezés</a>
+<a sec:authorize="!isAuthenticated()" href="/registration">Regisztráció</a>
+<form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post">
+ <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Kijelentkezés</a>
+</form>
+</nav>
+</div>
+
+
+
+<div layout:fragment="loginContent">
+
+
+
+</div>
+
+
+
+
+<footer class="footer">
+<p>Ez az oldal tesztelés céljából jött létre.</p>
+</footer>
+
+</body>
+</html>

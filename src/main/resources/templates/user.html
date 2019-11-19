@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/main">
+<head>
+<title>MyPage</title>
+<meta charset="utf-8" />
+
+
+</head>
+<body>
+
+<div layout:fragment="loginContent">
+
+<h3>User</h3>
+
+<pre>
+<label th:text="${user.email != null} ? 'Email cím: '+${user.email} : 'Nincs ilyen user!'">Email cím</label> 
+<label th:text="${user.firstName != null} ? 'Keresztnév: '+${user.firstName}">Keresztnév</label>
+<label th:text="${user.lastName != null} ? 'Utónév: '+${user.lastName}">Utónév</label>
+</pre>
+
+<h3 th:text="${not #lists.isEmpty(products)} ? 'Feltöltött termékek:'" ></h3>
+<table>
+  <tr th:each="product : ${products}">
+  <td><a th:href="@{'/product=' + ${product.id}}">
+<img th:src="${product.picturePath}" width=100 height=100/>
+</a></td>
+<td>
+<a  th:href="@{'/product=' + ${product.id}}" th:text="${product.name}">termekeknevei</a>
+<p th:text="${product.price} + ' Ft'">termekekarai</p>
+</td>
+</tr> 
+</table>
+
+</div>

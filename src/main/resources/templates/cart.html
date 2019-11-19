@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/main">
+<head>
+<title>MyPage</title>
+<meta charset="utf-8" />
+
+
+</head>
+<body>
+
+<div layout:fragment="loginContent">
+
+<h3>Kosár tartalma</h3>
+
+<table>
+
+<tr th:each="item : ${cart}">
+<td><img th:src="${item.product.picturePath}" width=100 height=100/></td>
+<td>
+
+<p th:text="${item.product.name}">termekeknevei</p> 
+ <p th:text="${item.product.price * item.quantity} + ' Ft'">termekekarai</p>
+
+<p th:text="'Db: ' + ${item.quantity}">termekekdarabszama</p> 
+
+ <form name="deleteItem" method="post" th:action="@{/cartDeleteItem}" th:object="${item}">
+  <input type="hidden"  th:value="${item.product.id}" id="product.id" name="product.id">
+    <input type="hidden"  th:value="${item.quantity}" id="quantity" name="quantity">
+ <input type="submit" name="submit" value="Delete" />
+ </form>
+ 
+ </td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/main">
+<head>
+<title>MyPage</title>
+<meta charset="utf-8" />
+
+
+</head>
+<body>
+
+<div layout:fragment="loginContent">
+
+<form class="box" name="registration" method=post th:action="@{/reg}" th:object="${user}" onsubmit="return validation()">
+<h1>Registration</h1>
+
+<input type="text" name="email" th:field="*{email}" placeholder="Email cím" required/>
+
+<input type="text" name="firstName" th:field="*{firstName}" placeholder="Keresztnév" required/>
+
+<input type="text" name="lastName" th:field="*{lastName}" placeholder="Vezetéknév" required/>
+
+<input type="password" name="password" th:field="*{password}" placeholder="Jelszó" />
+
+<input type="password" name="password2" placeholder="Jelszó mégegyszer" />
+
+<input type="submit" name="submit" value="Regisztrálok" />
+
+</form>
+
+<script type="text/javascript">
+
+function validation(){
+	
+	var email=document.forms["registration"]["email"];
+	var firstName=document.forms["registration"]["firstName"];
+	var lastName=document.forms["registration"]["lastName"];
+	var password=document.forms["registration"]["password"];
+	var password2=document.forms["registration"]["password2"];
+
+	
+	
+
+	
+	if(email.value == "")
+	{
+		
+		email.placeholder = "Adj meg email címet.";
+		
+		return false;
+	}
+	
+	 if (email.value.indexOf("@", 0) < 0)                 
+	    { 
+		 
+		 email.placeholder = "Valós email címet adj meg.";
+			return false;
+	    }
+	 
+	 if (email.value.indexOf(".", 0) < 0)   { 
+		 
+		 email.placeholder = "Valós email címet adj meg.";
+			return false;
+	    }
+		 
+		 
+	
+	if(firstName.value == "")
+	{
+		
+		firstName.placeholder = "Adj meg keresztnevet.";
+		return false;
+	}
+	
+	if(lastName.value == "")
+	{
+		
+		lastName.placeholder = "Adj meg vezetéknevet.";
+		return false;
+	}
+	
+	
+	
+	if(password.value != password2.value)
+	{
+		
+	//	errorMessage.value = "Nem egyezik a két jelszó.";
+		return false;
+	}
+	
+	if(password.value == "" ||  password2.value == "")
+	{
+		
+	//	errorMessage.value = "Adj meg jelszót.";
+		return false;
+	}
+	
+	
+}
+
+</script>
+
+</div>
+</body>
+</html>
