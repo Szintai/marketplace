@@ -13,3 +13,11 @@ TODO:
 Bugs:
 
 - Pictures don't display when uploaded
+
+Used Technologies:
+
+-Spring MVC
+-Spring Security
+-Thymeleaf
+-Jpa
+-H2
