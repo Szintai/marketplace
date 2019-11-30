@@ -27,7 +27,7 @@
 
 <p th:text="'Db: ' + ${item.quantity}">termekekdarabszama</p> 
 
- <form name="deleteItem" method="post" th:action="@{/cartDeleteItem}" th:object="${item}">
+ <form name="deleteItem" method="post" th:action="@{/cart}" th:object="${item}">
   <input type="hidden"  th:value="${item.product.id}" id="product.id" name="product.id">
     <input type="hidden"  th:value="${item.quantity}" id="quantity" name="quantity">
  <input type="submit" name="submit" value="Delete" />
