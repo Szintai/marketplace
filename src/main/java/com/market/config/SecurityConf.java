@@ -24,9 +24,13 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 	    return super.userDetailsService();
 	}
 	
-	@Autowired
-	private UserDetailsService userService;
-	
+
+	private final UserDetailsService userService;
+
+	public SecurityConf(UserDetailsService userService) {
+		this.userService = userService;
+	}
+
 	@Autowired
 	public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userService);

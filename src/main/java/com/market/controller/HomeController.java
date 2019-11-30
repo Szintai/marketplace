@@ -21,22 +21,27 @@ import com.market.service.UserServiceImpl;
 @Controller
 public class HomeController {
 
-	@Autowired
-	UserServiceImpl userService;
-	
-	@Autowired
-	ProductService productService;
-	
 	private final Logger log=LoggerFactory.getLogger(this.getClass());
+
+
+	private final UserServiceImpl userService;
 	
+
+	private final ProductService productService;
+
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	User admin=null;
 	
 	boolean init=true;
-	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	
+
+
+	public HomeController(UserServiceImpl userService, ProductService productService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.userService = userService;
+		this.productService = productService;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
+
 	@RequestMapping("/")
 	public String index()
 	{
@@ -62,9 +67,7 @@ public class HomeController {
 	@PostMapping("/reg")
 	public String reg(@ModelAttribute User user)
 	{
-		log.info("új user");
-		log.info(user.getEmail());
-		
+
 		String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 		userService.registerUser(user);

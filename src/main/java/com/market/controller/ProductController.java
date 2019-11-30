@@ -39,14 +39,13 @@ import com.market.service.UserServiceImpl;
 @Controller
 public class ProductController {
 
-	@Autowired
-	ProductService productService;
+	private final ProductService productService;
 	
-	@Autowired
-	CommentService commentService;
+
+	private final CommentService commentService;
 	
-	@Autowired
-	UserServiceImpl userService;
+
+	private final UserServiceImpl userService;
 	
 	private List<Item> cart = null;
 	
@@ -55,7 +54,13 @@ public class ProductController {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static/images/";
-	
+
+	public ProductController(ProductService productService, CommentService commentService, UserServiceImpl userService) {
+		this.productService = productService;
+		this.commentService = commentService;
+		this.userService = userService;
+	}
+
 	@RequestMapping("/products")
 	public String items(Model model)
 	{
@@ -71,9 +76,7 @@ public class ProductController {
 	@PostMapping("/prod")
 	public String addProductToCart(@ModelAttribute Product product , HttpSession session)
 	{
-		log.info(product.getId()+"");
-		
-		
+
 		if(session.getAttribute("cart") == null)
 		{
 			
@@ -97,13 +100,12 @@ public class ProductController {
 	
 	private boolean itemIsinTheCart(Long id)
 	{
-		
-	//	if(cart.size() != 0) {
+
 		for(Item item : cart)
 		{
 			if(item.getProduct().getId() == id) { item.incQuantity() ; return true;}
 		}
-//		}
+
 		return false;
 	}
 	
@@ -120,14 +122,13 @@ public class ProductController {
    @PostMapping("/prodUpload")
    public String prodUpload(@ModelAttribute Product product, @RequestParam("picture") MultipartFile picture)
    {
-	   log.info(product.getName());
 	   
 	   product.setPicturePath("/images/" + product.getName()+".jpg");
 	   product.setQuantity(1);
 	   
 	   UserDetailsImpl userDetails=(UserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		User user=userDetails.getUser();
+	   User user=userDetails.getUser();
 	   
 	   product.setUser(user);
 	   

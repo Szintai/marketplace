@@ -19,9 +19,13 @@ public class UserController {
 	
 	private final Logger log=LoggerFactory.getLogger(this.getClass());
 	
-	@Autowired
-	UserServiceImpl userService;
-	
+
+	private final UserServiceImpl userService;
+
+	public UserController(UserServiceImpl userService) {
+		this.userService = userService;
+	}
+
 	@RequestMapping("/profile")
 	public String profile(Model model)
 	{

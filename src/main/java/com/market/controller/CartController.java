@@ -34,9 +34,8 @@ public class CartController {
 	    	
 		if(session.getAttribute("cart") != null)
 		{
-			 cart=(List<Item>) session.getAttribute("cart");
-			log.info("idaigeljutottunk");
-		model.addAttribute("cart", cart);
+			cart=(List<Item>) session.getAttribute("cart");
+			model.addAttribute("cart", cart);
 		}
 			
 		return "cart";
@@ -57,12 +56,7 @@ public class CartController {
 			
 			
 		}
-		
-		
-	//  session.setAttribute("cart", cart);
-	  
-		log.info(cart.size()+"");
-			
+
 		return "redirect:/cart";
 	}
 	

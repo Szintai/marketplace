@@ -19,13 +19,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 
-	private RoleRepository roleRepository;
+	private final RoleRepository roleRepository;
 
 	private final String USER_ROLE = "USER";
 
-	@Autowired
+
 	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
