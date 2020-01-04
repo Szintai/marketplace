@@ -16,8 +16,8 @@ Bugs:
 
 Used Technologies:
 
--Spring MVC
--Spring Security
--Thymeleaf
--Jpa
--H2
+- Spring MVC
+- Spring Security
+- Thymeleaf
+- Jpa
+- H2
